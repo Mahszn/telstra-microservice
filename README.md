@@ -1,3 +1,3 @@
-# Telstra Starter Repo :bird:
+# Telstra Sim Card Activator Microservice:
 
-This repo has everything you need to get started on the Telstra program!
+This microservice is responsible for activating Telstra sim cards.
