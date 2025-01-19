@@ -1,9 +1,9 @@
 package au.com.telstra.simcardactivator;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public record ActivationRequest(
-        @NotBlank String iccid,
+        @NotNull String iccid,
         @Email String customerEmail
 ) { }

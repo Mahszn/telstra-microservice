@@ -28,7 +28,7 @@ public class ActivationController {
                     ActuatorResponse.class
             );
         } catch (Exception e) {
-//            System.err.println(STR."Error calling actuator microservice: \{e.getMessage()}");
+            System.err.println("Error calling actuator microservice: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(
                     "Actuator service is unavailable. Please try again later."
             );
@@ -36,17 +36,17 @@ public class ActivationController {
 
         if(response.getStatusCode().is2xxSuccessful() && response.getBody() != null){
             boolean activationSuccess = response.getBody().success();
-//            System.out.println(STR."Activation Success for ICCID \{request.iccid()}: \{activationSuccess}");
+            System.out.println("Activation Success for ICCID " + request.iccid() + ": " + activationSuccess);
 
             if(activationSuccess) {
-                return ResponseEntity.ok(STR."SIM activation succeeded for ICCID: \{request.iccid()}");
+                return ResponseEntity.ok("SIM activation succeeded for ICCID: " + request.iccid());
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                        STR."SIM activation failed for ICCID: \{request.iccid()}"
+                        "SIM activation failed for ICCID: " + request.iccid()
                 );
             }
         } else {
-//            System.err.println(STR."Unexpected response from actuator: \{response.getStatusCode()}");
+            System.err.println("Unexpected response from actuator: " + response.getStatusCode());
             return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(
                     "Failed to retrieve valid response from the actuator service."
             );
